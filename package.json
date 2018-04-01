@@ -25,6 +25,7 @@
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "start": "node src/",
+    "start:dev": "npx nodemon src/",
     "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
@@ -36,12 +37,15 @@
     "compression": "^1.7.1",
     "cors": "^2.8.4",
     "helmet": "^3.9.0",
+    "mongoosastic": "^4.4.1",
+    "mongoose": "^5.0.12",
     "serve-favicon": "^2.4.5",
     "winston": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "^4.18.2",
     "mocha": "^5.0.1",
+    "nodemon": "^1.17.3",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   }
