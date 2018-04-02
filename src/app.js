@@ -41,7 +41,31 @@ app.configure(services);
 app.configure(channels);
 
 // Configure a middleware for 404s and the error handler
-app.use(express.errorHandler({ logger }));
+// MODIFIED :: instead of using feathersjs builtin 404 and error handler
+// which return html page, we use our own error handler that returns response
+// in more restful way
+
+// 404 handler
+// eslint-disable-next-line no-unused-vars
+app.use((req, res, next) => {
+  res.status(404).json();
+});
+
+// Error handler
+// eslint-disable-next-line no-unused-vars
+app.use((error, req, res, next) => {
+  // Log the error if it didn't come from a service method call
+  if (logger && typeof logger.error === 'function' && !res.hook) {
+    logger.error(error);
+  }
+
+  const output = error.toJSON();
+  if (process.env.NODE_ENV === 'production') {
+    delete output.stack;
+  }
+
+  res.status(500).json(output);
+});
 
 app.hooks(appHooks);
 
