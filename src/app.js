@@ -59,12 +59,7 @@ app.use((error, req, res, next) => {
     logger.error(error);
   }
 
-  const output = error.toJSON();
-  if (process.env.NODE_ENV === 'production') {
-    delete output.stack;
-  }
-
-  res.status(500).json(output);
+  res.status(500).json({error: error.toString()});
 });
 
 app.hooks(appHooks);
