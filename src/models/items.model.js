@@ -3,6 +3,7 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 const Promise = require('bluebird');
+const mongoose = require('mongoose');
 const mongoosastic = require('mongoosastic');
 
 module.exports = function (app) {
@@ -14,6 +15,12 @@ module.exports = function (app) {
     description: { type: String, required: true },
     itemType: { type: String, es_indexed: true },
     quantity: { type: Number, required: true },
+    postedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+      es_indexed:true,
+    }
   }, {
     timestamps: true
   });
