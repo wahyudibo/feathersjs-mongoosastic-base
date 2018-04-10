@@ -1,14 +1,14 @@
 {
-  "host": "localhost",
-  "port": 3030,
+  "host": "APP_HOST",
+  "port": "APP_PORT",
   "public": "../public/",
   "paginate": {
     "default": 10,
     "max": 50
   },
-  "mongodb": "mongodb://localhost:27017/featherjs_mongoosastic_base",
+  "mongodb": "MONGODB_URL",
   "elasticsearch": {
-    "host": "localhost",
-    "port": 9200
+    "host": "ES_HOST",
+    "port": "ES_PORT"
   }
 }
