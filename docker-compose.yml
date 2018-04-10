@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    build: .
+    image: feathersjs-mongoosastic-base
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+      - elasticsearch
+    environment:
+      - APP_HOST=127.0.0.1
+      - APP_PORT=3000
+      - MONGODB_URL=mongodb://feathersjsmongoosasticbase_mongodb_1:27017/featherjs_mongoosastic_base
+      - ES_HOST=feathersjsmongoosasticbase_elasticsearch_1
+      - ES_PORT=9200
+  mongodb:
+    image: mongo:3.6
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
